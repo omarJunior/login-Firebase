@@ -25,7 +25,6 @@ const Firestore = (props) => {
           const arrayData = data.docs.map(doc => ({ id: doc.id, ...doc.data() }))
           //sacar ultimo  
           setUltimo(data.docs[data.docs.length - 1])
-          console.log(arrayData)
           setTareas(arrayData)
 
           const query = await db.collection(props.user.uid)
@@ -33,7 +32,6 @@ const Firestore = (props) => {
           .orderBy('fecha')
           .startAfter(data.docs[data.docs.length - 1])
           .get()
-          console.log(query);
           if(query.empty){
            console.log("No hay mas documentos"); 
            setDesactivar(true)
@@ -68,7 +66,6 @@ const Firestore = (props) => {
               .orderBy('fecha')
               .startAfter(data.docs[data.docs.length - 1])
               .get()
-              console.log(query);
             if(query.empty){
             console.log("No hay mas documentos"); 
             setDesactivar(true)

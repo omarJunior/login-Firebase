@@ -4,16 +4,17 @@
 import './App.css'
 import {
   BrowserRouter as Router,
-  Link,
   Switch,
   Route,
-  Redirect
   } from 'react-router-dom'
+import { auth } from './firebase'
+import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import Login from './components/Login'
 import Admin from './components/Admin'
-import { auth } from './firebase'
-import { useEffect, useState } from 'react'
+import Reset from './components/Reset'
+
+
 
 
 function App({ callback }) {
@@ -50,6 +51,9 @@ function App({ callback }) {
           <Admin />
         </Route>
 
+        <Route path="/reset">
+          <Reset />
+        </Route>
 
       </Switch>
 

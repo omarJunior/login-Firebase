@@ -5,8 +5,8 @@ import { withRouter } from 'react-router-dom'
 
 const Login = (props) => {
 
-    const [email, setEmail] = useState("prueba@prueba.com")
-    const [pass, setPass] = useState("123456")
+    const [email, setEmail] = useState("")
+    const [pass, setPass] = useState("")
     const [error, setError] = useState(null)
     const [esRegistro, setEsRegistro] = useState(false)
     
@@ -36,7 +36,7 @@ const Login = (props) => {
 
     const login = useCallback(async()=>{
         try{
-            const resp = await auth.signInWithEmailAndPassword(email, pass)
+            await auth.signInWithEmailAndPassword(email, pass)
             setEmail('')
             setPass('')
             setError(null)
@@ -128,6 +128,16 @@ const Login = (props) => {
                             esRegistro ? '¿Ya estas registrado?': '¿No tienes cuenta?'
                         }
                     </button>
+                    {
+                        esRegistro ? null : (
+                            <button 
+                                type='button'
+                                className="btn btn-danger btn-sm mt-2"
+                                onClick={()=> props.history.push('/reset')}>
+                                Recuperar contraseña
+                            </button>
+                        )
+                    }
                 </form>
             </div>
         </div>
